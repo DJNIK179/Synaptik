@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SinaptikModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Avtoriz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="MiddleName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Development">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdClent" Type="int" />
+          <Property Name="IdEmployees" Type="int" />
+          <Property Name="IdSites" Type="int" />
+          <Property Name="Prise" Type="int" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="MiddleName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Post" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="Pages" Type="nvarchar(max)" />
+          <Property Name="Units" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Website developmen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSites" Type="int" />
+          <Property Name="Prototip" Type="nvarchar(max)" />
+          <Property Name="Design" Type="nvarchar(max)" />
+          <Property Name="Verstka" Type="nvarchar(max)" />
+          <Property Name="Marceting" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Development_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Development" Type="Self.Development" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Development">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Development_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Development" Type="Self.Development" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Development">
+              <PropertyRef Name="IdEmployees" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Development_Sites">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+          <End Role="Development" Type="Self.Development" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Development">
+              <PropertyRef Name="IdSites" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Website developmen_Sites">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+          <End Role="Website developmen" Type="Self.Website developmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Website developmen">
+              <PropertyRef Name="IdSites" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SinaptikModelContainer">
+          <EntitySet Name="Avtoriz" EntityType="Self.Avtoriz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Development" EntityType="Self.Development" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sites" EntityType="Self.Sites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Website developmen" EntityType="Self.Website developmen" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Development_Client" Association="Self.FK_Development_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Development" EntitySet="Development" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Development_Employees" Association="Self.FK_Development_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Development" EntitySet="Development" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Development_Sites" Association="Self.FK_Development_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Development" EntitySet="Development" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Website developmen_Sites" Association="Self.FK_Website developmen_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Website developmen" EntitySet="Website developmen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SinaptikModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Avtoriz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Development" Relationship="Self.FK_Development_Client" FromRole="Client" ToRole="Development" />
+        </EntityType>
+        <EntityType Name="Development">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClent" Type="Int32" />
+          <Property Name="IdEmployees" Type="Int32" />
+          <Property Name="IdSites" Type="Int32" />
+          <Property Name="Prise" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Development_Client" FromRole="Development" ToRole="Client" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Development_Employees" FromRole="Development" ToRole="Employees" />
+          <NavigationProperty Name="Sites" Relationship="Self.FK_Development_Sites" FromRole="Development" ToRole="Sites" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Development" Relationship="Self.FK_Development_Employees" FromRole="Employees" ToRole="Development" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Units" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Development" Relationship="Self.FK_Development_Sites" FromRole="Sites" ToRole="Development" />
+          <NavigationProperty Name="Website_developmen" Relationship="Self.FK_Website_developmen_Sites" FromRole="Sites" ToRole="Website_developmen" />
+        </EntityType>
+        <EntityType Name="Website_developmen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSites" Type="Int32" />
+          <Property Name="Prototip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Design" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Verstka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Marceting" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sites" Relationship="Self.FK_Website_developmen_Sites" FromRole="Website_developmen" ToRole="Sites" />
+        </EntityType>
+        <Association Name="FK_Development_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Development" Type="Self.Development" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Development">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Development_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Development" Type="Self.Development" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Development">
+              <PropertyRef Name="IdEmployees" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Development_Sites">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+          <End Role="Development" Type="Self.Development" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Development">
+              <PropertyRef Name="IdSites" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Website_developmen_Sites">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+          <End Role="Website_developmen" Type="Self.Website_developmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Website_developmen">
+              <PropertyRef Name="IdSites" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SinaptikEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Avtoriz" EntityType="Self.Avtoriz" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Development" EntityType="Self.Development" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Sites" EntityType="Self.Sites" />
+          <EntitySet Name="Website_developmen" EntityType="Self.Website_developmen" />
+          <AssociationSet Name="FK_Development_Client" Association="Self.FK_Development_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Development" EntitySet="Development" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Development_Employees" Association="Self.FK_Development_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Development" EntitySet="Development" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Development_Sites" Association="Self.FK_Development_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Development" EntitySet="Development" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Website_developmen_Sites" Association="Self.FK_Website_developmen_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Website_developmen" EntitySet="Website_developmen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SinaptikModelContainer" CdmEntityContainer="SinaptikEntities">
+          <EntitySetMapping Name="Avtoriz">
+            <EntityTypeMapping TypeName="SinaptikModel.Avtoriz">
+              <MappingFragment StoreEntitySet="Avtoriz">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="SinaptikModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Development">
+            <EntityTypeMapping TypeName="SinaptikModel.Development">
+              <MappingFragment StoreEntitySet="Development">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdClent" ColumnName="IdClent" />
+                <ScalarProperty Name="IdEmployees" ColumnName="IdEmployees" />
+                <ScalarProperty Name="IdSites" ColumnName="IdSites" />
+                <ScalarProperty Name="Prise" ColumnName="Prise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="SinaptikModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="SinaptikModel.Sites">
+              <MappingFragment StoreEntitySet="Sites">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="Units" ColumnName="Units" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Website_developmen">
+            <EntityTypeMapping TypeName="SinaptikModel.Website_developmen">
+              <MappingFragment StoreEntitySet="Website developmen">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdSites" ColumnName="IdSites" />
+                <ScalarProperty Name="Prototip" ColumnName="Prototip" />
+                <ScalarProperty Name="Design" ColumnName="Design" />
+                <ScalarProperty Name="Verstka" ColumnName="Verstka" />
+                <ScalarProperty Name="Marceting" ColumnName="Marceting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
