@@ -105,7 +105,11 @@ namespace Синаптик
             }
             catch
             {
-                MessageBox.Show("Невозможно удалить, эту запись используется!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                comboBoxSites.SelectedItem = null;
+                comboBoxPrototip.SelectedItem = null;
+                comboBoxDesign.SelectedItem = null;
+                comboBoxVerstka.SelectedItem = null;
+                comboBoxMarketing.SelectedItem = null;
             }
         }
 

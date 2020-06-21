@@ -293,6 +293,7 @@
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.textBoxName);
             this.Name = "FormSites";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormSites";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

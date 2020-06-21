@@ -30,10 +30,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdClent" Type="int" />
-          <Property Name="IdEmployees" Type="int" />
-          <Property Name="IdSites" Type="int" />
-          <Property Name="Prise" Type="int" />
+          <Property Name="IdClent" Type="int" Nullable="false" />
+          <Property Name="IdEmployees" Type="int" Nullable="false" />
+          <Property Name="IdSites" Type="int" Nullable="false" />
+          <Property Name="Prise" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -51,8 +51,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Pages" Type="nvarchar(max)" />
           <Property Name="Units" Type="nvarchar(max)" />
         </EntityType>
@@ -67,20 +67,20 @@
           <Property Name="Verstka" Type="nvarchar(max)" />
           <Property Name="Marceting" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK_Development_Client">
+        <Association Name="FK_Development_Client1">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Development" Type="Self.Development" Multiplicity="0..1" />
+          <End Role="Development" Type="Self.Development" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Development">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdClent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Development_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+        <Association Name="FK_Development_Employees1">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="Development" Type="Self.Development" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
@@ -91,8 +91,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Development_Sites">
-          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+        <Association Name="FK_Development_Sites1">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="1" />
           <End Role="Development" Type="Self.Development" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sites">
@@ -122,15 +122,15 @@
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sites" EntityType="Self.Sites" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Website developmen" EntityType="Self.Website developmen" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Development_Client" Association="Self.FK_Development_Client">
+          <AssociationSet Name="FK_Development_Client1" Association="Self.FK_Development_Client1">
             <End Role="Client" EntitySet="Client" />
             <End Role="Development" EntitySet="Development" />
           </AssociationSet>
-          <AssociationSet Name="FK_Development_Employees" Association="Self.FK_Development_Employees">
+          <AssociationSet Name="FK_Development_Employees1" Association="Self.FK_Development_Employees1">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Development" EntitySet="Development" />
           </AssociationSet>
-          <AssociationSet Name="FK_Development_Sites" Association="Self.FK_Development_Sites">
+          <AssociationSet Name="FK_Development_Sites1" Association="Self.FK_Development_Sites1">
             <End Role="Sites" EntitySet="Sites" />
             <End Role="Development" EntitySet="Development" />
           </AssociationSet>
@@ -163,20 +163,20 @@
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Development" Relationship="Self.FK_Development_Client" FromRole="Client" ToRole="Development" />
+          <NavigationProperty Name="Development" Relationship="Self.FK_Development_Client1" FromRole="Client" ToRole="Development" />
         </EntityType>
         <EntityType Name="Development">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdClent" Type="Int32" />
-          <Property Name="IdEmployees" Type="Int32" />
-          <Property Name="IdSites" Type="Int32" />
-          <Property Name="Prise" Type="Int32" />
-          <NavigationProperty Name="Client" Relationship="Self.FK_Development_Client" FromRole="Development" ToRole="Client" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Development_Employees" FromRole="Development" ToRole="Employees" />
-          <NavigationProperty Name="Sites" Relationship="Self.FK_Development_Sites" FromRole="Development" ToRole="Sites" />
+          <Property Name="IdClent" Type="Int32" Nullable="false" />
+          <Property Name="IdEmployees" Type="Int32" Nullable="false" />
+          <Property Name="IdSites" Type="Int32" Nullable="false" />
+          <Property Name="Prise" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Development_Client1" FromRole="Development" ToRole="Client" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Development_Employees1" FromRole="Development" ToRole="Employees" />
+          <NavigationProperty Name="Sites" Relationship="Self.FK_Development_Sites1" FromRole="Development" ToRole="Sites" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -188,18 +188,18 @@
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Development" Relationship="Self.FK_Development_Employees" FromRole="Employees" ToRole="Development" />
+          <NavigationProperty Name="Development" Relationship="Self.FK_Development_Employees1" FromRole="Employees" ToRole="Development" />
         </EntityType>
         <EntityType Name="Sites">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Pages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Units" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Development" Relationship="Self.FK_Development_Sites" FromRole="Sites" ToRole="Development" />
+          <NavigationProperty Name="Development" Relationship="Self.FK_Development_Sites1" FromRole="Sites" ToRole="Development" />
           <NavigationProperty Name="Website_developmen" Relationship="Self.FK_Website_developmen_Sites" FromRole="Sites" ToRole="Website_developmen" />
         </EntityType>
         <EntityType Name="Website_developmen">
@@ -214,20 +214,20 @@
           <Property Name="Marceting" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sites" Relationship="Self.FK_Website_developmen_Sites" FromRole="Website_developmen" ToRole="Sites" />
         </EntityType>
-        <Association Name="FK_Development_Client">
+        <Association Name="FK_Development_Client1">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Development" Type="Self.Development" Multiplicity="0..1" />
+          <End Role="Development" Type="Self.Development" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Development">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdClent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Development_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+        <Association Name="FK_Development_Employees1">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="Development" Type="Self.Development" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
@@ -238,8 +238,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Development_Sites">
-          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+        <Association Name="FK_Development_Sites1">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="1" />
           <End Role="Development" Type="Self.Development" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sites">
@@ -269,15 +269,15 @@
           <EntitySet Name="Employees" EntityType="Self.Employees" />
           <EntitySet Name="Sites" EntityType="Self.Sites" />
           <EntitySet Name="Website_developmen" EntityType="Self.Website_developmen" />
-          <AssociationSet Name="FK_Development_Client" Association="Self.FK_Development_Client">
+          <AssociationSet Name="FK_Development_Client1" Association="Self.FK_Development_Client1">
             <End Role="Client" EntitySet="Client" />
             <End Role="Development" EntitySet="Development" />
           </AssociationSet>
-          <AssociationSet Name="FK_Development_Employees" Association="Self.FK_Development_Employees">
+          <AssociationSet Name="FK_Development_Employees1" Association="Self.FK_Development_Employees1">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Development" EntitySet="Development" />
           </AssociationSet>
-          <AssociationSet Name="FK_Development_Sites" Association="Self.FK_Development_Sites">
+          <AssociationSet Name="FK_Development_Sites1" Association="Self.FK_Development_Sites1">
             <End Role="Sites" EntitySet="Sites" />
             <End Role="Development" EntitySet="Development" />
           </AssociationSet>

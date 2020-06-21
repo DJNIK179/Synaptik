@@ -288,6 +288,7 @@
             this.Controls.Add(this.labelPrototip);
             this.Controls.Add(this.labelSites);
             this.Name = "FormWebsite_Development";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormWebsite_Development";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

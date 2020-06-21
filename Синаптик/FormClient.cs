@@ -81,7 +81,11 @@ namespace Синаптик
             }
             catch
             {
-                MessageBox.Show("Невозможно удалить, эту запись используется!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxFirstName.Text = " ";
+                textBoxMiddleName.Text = " ";
+                textBoxLastName.Text = " ";
+                textBoxPhone.Text = " ";
+                textBoxEmail.Text = " ";
             }
         }
 

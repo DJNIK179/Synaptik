@@ -141,6 +141,7 @@
             this.Controls.Add(this.buttonEmployees);
             this.Controls.Add(this.pictureBox1);
             this.Name = "FormMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMenu";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -14,6 +14,12 @@ namespace Синаптик
     
     public partial class Client
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Client()
+        {
+            this.Development = new HashSet<Development>();
+        }
+    
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -21,6 +27,7 @@ namespace Синаптик
         public string Phone { get; set; }
         public string Email { get; set; }
     
-        public virtual Development Development { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Development> Development { get; set; }
     }
 }

@@ -137,7 +137,18 @@ namespace Синаптик
             }
             catch
             {
-                MessageBox.Show("Невозможно удалить, эта запись используется!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (comboBoxType.SelectedIndex == 0)
+                {
+                    textBoxName.Text = " ";
+                    textBoxMulti.Text = " ";
+                    textBoxLend.Text = " ";
+                }
+                else if (comboBoxType.SelectedIndex == 1)
+                {
+                    textBoxName.Text = " ";
+                    textBoxMulti.Text = " ";
+                    textBoxLend.Text = " ";
+                }
             }
         }
 

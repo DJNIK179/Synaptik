@@ -32,13 +32,6 @@
             this.comboBoxEmployees = new System.Windows.Forms.ComboBox();
             this.labelDesign = new System.Windows.Forms.Label();
             this.listViewDevelop = new System.Windows.Forms.ListView();
-            this.comboBoxSites = new System.Windows.Forms.ComboBox();
-            this.labelPrototip = new System.Windows.Forms.Label();
-            this.labelSites = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonEdit = new System.Windows.Forms.Button();
-            this.buttonDel = new System.Windows.Forms.Button();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -46,6 +39,13 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.comboBoxSites = new System.Windows.Forms.ComboBox();
+            this.labelPrototip = new System.Windows.Forms.Label();
+            this.labelSites = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonDel = new System.Windows.Forms.Button();
             this.textBoxPrise = new System.Windows.Forms.TextBox();
             this.labelPrise = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -101,6 +101,41 @@
             this.listViewDevelop.UseCompatibleStateImageBehavior = false;
             this.listViewDevelop.View = System.Windows.Forms.View.Details;
             this.listViewDevelop.SelectedIndexChanged += new System.EventHandler(this.listViewDevelopment_SelectedIndexChanged);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Id Клиента";
+            this.columnHeader4.Width = 78;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "ФИО Клиента";
+            this.columnHeader6.Width = 98;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Id Заказа";
+            this.columnHeader9.Width = 70;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Название";
+            this.columnHeader10.Width = 75;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Id Сотрудника";
+            this.columnHeader11.Width = 97;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "ФИО Сотрудника";
+            this.columnHeader12.Width = 131;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Стоимость заказа";
+            this.columnHeader1.Width = 121;
             // 
             // comboBoxSites
             // 
@@ -187,41 +222,6 @@
             this.buttonDel.UseVisualStyleBackColor = false;
             this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Id Клиента";
-            this.columnHeader4.Width = 78;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "ФИО Клиента";
-            this.columnHeader6.Width = 98;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Id Заказа";
-            this.columnHeader9.Width = 70;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Название";
-            this.columnHeader10.Width = 75;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Id Сотрудника";
-            this.columnHeader11.Width = 97;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "ФИО Сотрудника";
-            this.columnHeader12.Width = 131;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Стоимость заказа";
-            this.columnHeader1.Width = 121;
-            // 
             // textBoxPrise
             // 
             this.textBoxPrise.Location = new System.Drawing.Point(24, 188);
@@ -260,6 +260,7 @@
             this.Controls.Add(this.labelPrototip);
             this.Controls.Add(this.labelSites);
             this.Name = "FormDevelopment";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormDevelopment";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

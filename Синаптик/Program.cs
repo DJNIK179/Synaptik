@@ -9,9 +9,7 @@ namespace Синаптик
     static class Program
     {
         public static SinaptikEntities Sinaptik = new SinaptikEntities();
-        /// <summary>
-        /// Главная точка входа для приложения.
-        /// </summary>
+        
         [STAThread]
         static void Main()
         {

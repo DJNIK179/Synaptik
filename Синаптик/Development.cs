@@ -15,10 +15,10 @@ namespace Синаптик
     public partial class Development
     {
         public int Id { get; set; }
-        public Nullable<int> IdClent { get; set; }
-        public Nullable<int> IdEmployees { get; set; }
-        public Nullable<int> IdSites { get; set; }
-        public Nullable<int> Prise { get; set; }
+        public int IdClent { get; set; }
+        public int IdEmployees { get; set; }
+        public int IdSites { get; set; }
+        public int Prise { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Employees Employees { get; set; }

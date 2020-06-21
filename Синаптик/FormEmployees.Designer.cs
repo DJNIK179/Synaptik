@@ -272,6 +272,7 @@
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonDel);
             this.Name = "FormEmployees";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormEmployees";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
